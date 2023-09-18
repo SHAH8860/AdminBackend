@@ -24,6 +24,7 @@ router.post("/register", async (req, res, next) => {
     res.status(500).json({ message: error });
   }
 });
+
 router.get("/all", async (req, res, next) => {
   try {
     await admin.find().then((data) => {
@@ -33,6 +34,7 @@ router.get("/all", async (req, res, next) => {
     console.log("error", error);
   }
 });
+
 router.post("/login", async (req, res) => {
   try {
     let email = req.body.email;
@@ -54,6 +56,10 @@ router.post("/login", async (req, res) => {
     else {
       res.status(500).json({ message: "Invalid user" });
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 });
+
+
 module.exports = router;
