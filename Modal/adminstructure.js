@@ -4,11 +4,15 @@ const jwt = require("jsonwebtoken");
 const Adminschema = new mongoose.Schema({
   AdminEmail: {
     type: String,
-    required: true,
+    required:true
+   
+    
   },
   AdminPassword: {
     type: String,
-    required: true,
+    required:true
+    
+    
   },
   tokens: [
     {

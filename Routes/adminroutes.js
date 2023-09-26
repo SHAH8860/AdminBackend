@@ -4,23 +4,21 @@ const mongoose = require("mongoose");
 const admin = require("../Modal/adminstructure");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-
 router.post("/register", async (req, res, next) => {
+  console.log("res.body",res.body)
   try {
-    let token;
-    let data = new admin({
-      AdminEmail: req.body.AdminEmail,
-      AdminPassword: req.body.AdminPassword,
-    });
-    token = await data.generatetoken();
+    let data = new admin(req.body)
+    let token = await data.generatetoken();
     // let cookie = res.cookie("jwt", token, {
     //   expires: new Date(Date.now() + 30000),
     //   httpOnly: true,
     // });
+    console.log("Data",data)
     await data.save();
     res.status(200).json({ token });
-  } catch (error) {
-    console.log(error);
+  }
+   catch (error) {
+    console.log("errrrroor",error);
     res.status(500).json({ message: error });
   }
 });
